@@ -1,13 +1,16 @@
+from pickletools import int4
 import requests
 from threading import Thread
 from queue import Queue
 from time import perf_counter
 import json
 import os
+ 
+print (">>>微课美术爱派派下崽器V0.2(゜▽゜*)♪<<<")
 
 # 初始化
 q = Queue()
-n_threads = 5
+n_threads = int(input (">>>设置下载线程数:"))
 buffer_size = 1024
 
 # 读取j数据
@@ -63,7 +66,7 @@ if __name__ == "__main__":
     os.chdir(f"./{folderename}")
 
     # 文件url列表
-    urls = dataimg * 5
+    urls = dataimg * n_threads
 
     # 下载全部文件时间
     t = perf_counter()
