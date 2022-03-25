@@ -6,7 +6,7 @@ from time import perf_counter
 import json
 import os
  
-print (">>>微课美术爱派派下崽器V0.2(゜▽゜*)♪<<<")
+print (">>>微课美术爱派派下崽器V0.3 Hi(゜▽゜*)♪<<<")
 
 # 初始化
 q = Queue()
@@ -23,7 +23,19 @@ dic1 = dic['data']['dataMsg']['imgs']
 # 提取文件夹名
 folderename = dic['data']['dataMsg']['title']
 
-input (f">>>文件夹名:{folderename},回车└→开始:")
+dataimg  = []
+
+# 遍历列表
+for linian in dic1:
+    #print (linian['img'])
+    dataimg.append(linian['img'])
+
+# 统计一共多少文件
+num_ = len(dataimg)
+
+print (">>>文件信息:")
+print (f">>>文件夹名:{folderename},共需下载{num_}份文件")
+input (f">>>回车└→开始:")
 
 if not os.path.exists(folderename):
     os.mkdir(folderename)
@@ -51,16 +63,6 @@ def download():
         q.task_done()
 
 if __name__ == "__main__":
-
-    dataimg  = []
-
-    # 遍历列表
-    for linian in dic1:
-        #print (linian['img'])
-        dataimg.append(linian['img'])
-
-    # 统计一共多少文件
-    num_ = len(dataimg)
 
     #修改当前工作目录
     os.chdir(f"./{folderename}")
@@ -99,8 +101,10 @@ print (f">>>文件夹:{folderename},共{num_}份文件")
 if num_jpg == num_ :
     print (">>>已核对,全部文件下载完成!!!<<<")
     input (">>>回车└→退出:")
+    print (">>>感谢使用!!!(＾ω＾)つBye")
 
 else:
     # 可能还有更详细的核对(咕咕~~)
     print (">>>部分文件下载失败,请注意核对<<<")
     input (">>>回车└→退出:")
+    print (">>>别忘记下载没有完成的文件!!!")
